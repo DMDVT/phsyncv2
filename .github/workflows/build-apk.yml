@@ -1,4 +1,4 @@
-name: Build Android APK
+name: Build Android Release APK
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   build-apk:
-    name: Build PhotoSync APK
+    name: Build PhotoSync Release APK
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
@@ -103,16 +103,16 @@ jobs:
         working-directory: mobile
         run: flutter test
 
-      - name: Build debug APK
+      - name: Build release APK
         working-directory: mobile
         run: |
-          flutter build apk --debug \
+          flutter build apk --release \
             --dart-define=API_BASE_URL=${{ vars.API_BASE_URL }}
 
-      - name: Upload APK
+      - name: Upload release APK
         uses: actions/upload-artifact@v4
         with:
-          name: photosync-debug-apk
-          path: mobile/build/app/outputs/flutter-apk/app-debug.apk
+          name: photosync-release-apk
+          path: mobile/build/app/outputs/flutter-apk/app-release.apk
           if-no-files-found: error
           retention-days: 14
