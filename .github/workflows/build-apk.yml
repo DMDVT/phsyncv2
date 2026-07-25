@@ -1,0 +1,69 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "mobile/**"
+      - ".github/workflows/build-apk.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build-apk:
+    name: Build PhotoSync APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Show Flutter version
+        run: flutter --version
+
+      - name: Check mobile project
+        run: |
+          test -f mobile/pubspec.yaml
+          ls -la mobile
+
+      - name: Generate Android platform
+        working-directory: mobile
+        run: |
+          flutter create . --platforms=android
+          test -d android
+
+      - name: Install dependencies
+        working-directory: mobile
+        run: flutter pub get
+
+      - name: Run Flutter analyzer
+        working-directory: mobile
+        run: flutter analyze --no-fatal-infos
+
+      - name: Run Flutter tests
+        working-directory: mobile
+        run: flutter test
+
+      - name: Build debug APK
+        working-directory: mobile
+        run: |
+          flutter build apk --debug \
+            --dart-define=API_BASE_URL=${{ vars.API_BASE_URL }}
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: photosync-debug-apk
+          path: mobile/build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14
