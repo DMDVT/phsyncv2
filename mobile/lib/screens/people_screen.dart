@@ -64,7 +64,7 @@ class _PeopleScreenState extends State<PeopleScreen> {
 
   Future<void> _pickReference() async {
     try {
-      final FilePickerResult? result = await FilePicker.pickFiles(
+      final FilePickerResult? result = await FilePicker.platform.pickFiles(
         type: FileType.image,
         allowMultiple: false,
         withData: false,
