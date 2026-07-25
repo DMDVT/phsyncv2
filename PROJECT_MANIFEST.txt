@@ -1,0 +1,122 @@
+PhotoSync Phase 1-4
+
+.github/workflows/ci.yml
+.gitignore
+PHASE_3_4_IMPLEMENTATION.md
+PROJECT_MANIFEST.txt
+README.md
+backend/.env.example
+backend/Dockerfile
+backend/app/__init__.py
+backend/app/__pycache__/__init__.cpython-313.pyc
+backend/app/__pycache__/config.cpython-313.pyc
+backend/app/__pycache__/database.cpython-313.pyc
+backend/app/__pycache__/dependencies.cpython-313.pyc
+backend/app/__pycache__/main.cpython-313.pyc
+backend/app/config.py
+backend/app/database.py
+backend/app/dependencies.py
+backend/app/main.py
+backend/app/models/__init__.py
+backend/app/models/__pycache__/__init__.cpython-313.pyc
+backend/app/models/__pycache__/device.cpython-313.pyc
+backend/app/models/__pycache__/metadata.cpython-313.pyc
+backend/app/models/__pycache__/social.cpython-313.pyc
+backend/app/models/__pycache__/sync_preference.cpython-313.pyc
+backend/app/models/__pycache__/user.cpython-313.pyc
+backend/app/models/device.py
+backend/app/models/metadata.py
+backend/app/models/social.py
+backend/app/models/sync_preference.py
+backend/app/models/user.py
+backend/app/routers/__init__.py
+backend/app/routers/__pycache__/__init__.cpython-313.pyc
+backend/app/routers/__pycache__/auth.cpython-313.pyc
+backend/app/routers/__pycache__/friends.cpython-313.pyc
+backend/app/routers/__pycache__/metadata.cpython-313.pyc
+backend/app/routers/__pycache__/notifications.cpython-313.pyc
+backend/app/routers/__pycache__/share_links.cpython-313.pyc
+backend/app/routers/__pycache__/shared_albums.cpython-313.pyc
+backend/app/routers/__pycache__/sharing.cpython-313.pyc
+backend/app/routers/__pycache__/sync.cpython-313.pyc
+backend/app/routers/__pycache__/users.cpython-313.pyc
+backend/app/routers/auth.py
+backend/app/routers/friends.py
+backend/app/routers/metadata.py
+backend/app/routers/notifications.py
+backend/app/routers/share_links.py
+backend/app/routers/shared_albums.py
+backend/app/routers/sharing.py
+backend/app/routers/sync.py
+backend/app/routers/users.py
+backend/app/schemas/__init__.py
+backend/app/schemas/__pycache__/__init__.cpython-313.pyc
+backend/app/schemas/__pycache__/auth.cpython-313.pyc
+backend/app/schemas/__pycache__/social.cpython-313.pyc
+backend/app/schemas/__pycache__/sync.cpython-313.pyc
+backend/app/schemas/auth.py
+backend/app/schemas/social.py
+backend/app/schemas/sync.py
+backend/app/services/__init__.py
+backend/app/services/__pycache__/__init__.cpython-313.pyc
+backend/app/services/__pycache__/auth_service.cpython-313.pyc
+backend/app/services/auth_service.py
+backend/docker-compose.yml
+backend/requirements.txt
+backend/tests/conftest.py
+backend/tests/test_health.py
+backend/tests/test_social_models.py
+backend/workers/__init__.py
+backend/workers/__pycache__/__init__.cpython-313.pyc
+backend/workers/__pycache__/celery_app.cpython-313.pyc
+backend/workers/celery_app.py
+backend/workers/tasks/__init__.py
+backend/workers/tasks/__pycache__/__init__.cpython-313.pyc
+backend/workers/tasks/__pycache__/cleanup_expired.cpython-313.pyc
+backend/workers/tasks/cleanup_expired.py
+mobile/analysis_options.yaml
+mobile/assets/ml_models/README.md
+mobile/lib/app/app.dart
+mobile/lib/app/theme.dart
+mobile/lib/database/local_database.dart
+mobile/lib/database/tables.dart
+mobile/lib/main.dart
+mobile/lib/models/album.dart
+mobile/lib/models/media_item.dart
+mobile/lib/providers/gallery_provider.dart
+mobile/lib/screens/albums/albums_list_screen.dart
+mobile/lib/screens/gallery/gallery_grid_screen.dart
+mobile/lib/screens/gallery/photo_viewer_screen.dart
+mobile/lib/screens/memories/memories_screen.dart
+mobile/lib/screens/onboarding/album_selection_screen.dart
+mobile/lib/screens/people/people_screen.dart
+mobile/lib/screens/search/search_screen.dart
+mobile/lib/screens/settings/settings_screen.dart
+mobile/lib/screens/settings/storage_screen.dart
+mobile/lib/screens/sharing/notifications_screen.dart
+mobile/lib/screens/sharing/sharing_hub_screen.dart
+mobile/lib/screens/vault/vault_screen.dart
+mobile/lib/services/ai_service.dart
+mobile/lib/services/api_service.dart
+mobile/lib/services/compression_service.dart
+mobile/lib/services/hash_utils.dart
+mobile/lib/services/media_scanner.dart
+mobile/lib/services/memories_service.dart
+mobile/lib/services/messaging_contact_sync_service.dart
+mobile/lib/services/search_service.dart
+mobile/lib/services/storage_analytics_service.dart
+mobile/lib/services/vault_service.dart
+mobile/pubspec.yaml
+mobile/test/hash_utils_test.dart
+
+Added smart media implementation:
+- mobile/lib/services/duplicate_service.dart
+- mobile/lib/services/smart_album_service.dart
+- mobile/lib/services/face_match_service.dart
+- mobile/lib/services/person_album_store.dart
+- mobile/lib/models/person_album.dart
+- mobile/lib/screens/duplicates_screen.dart
+- mobile/lib/screens/smart_albums_screen.dart
+- mobile/lib/screens/memories_screen.dart
+- mobile/lib/screens/people_screen.dart
+- FEATURES.md

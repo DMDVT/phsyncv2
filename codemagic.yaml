@@ -1,0 +1,32 @@
+workflows:
+  android-debug:
+    name: PhotoSync Android APK
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      java: 17
+      vars:
+        API_BASE_URL: https://phsync-production.up.railway.app
+    scripts:
+      - name: Generate Android platform
+        script: |
+          cd mobile
+          flutter create . --platforms=android --org com.photosync --project-name photosync
+      - name: Configure Android permissions
+        script: python tool/configure_android.py
+      - name: Install dependencies
+        script: |
+          cd mobile
+          flutter pub get
+      - name: Analyze and test
+        script: |
+          cd mobile
+          flutter analyze
+          flutter test
+      - name: Build APKs
+        script: |
+          cd mobile
+          flutter build apk --debug --dart-define=API_BASE_URL="$API_BASE_URL"
+          flutter build apk --release --dart-define=API_BASE_URL="$API_BASE_URL"
+    artifacts:
+      - mobile/build/app/outputs/flutter-apk/*.apk
