@@ -85,11 +85,15 @@ jobs:
 
           test -d android
 
-      - name: Install dependencies
+      - name: Clean and install dependencies
         working-directory: mobile
         run: |
+          flutter clean
+          rm -rf .dart_tool
           rm -f pubspec.lock
+          rm -rf android/.gradle
           flutter pub get
+          flutter pub deps | grep file_picker
 
       - name: Run Flutter analyzer
         working-directory: mobile
