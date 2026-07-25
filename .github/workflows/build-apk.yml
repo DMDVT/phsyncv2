@@ -7,6 +7,7 @@ on:
       - main
     paths:
       - "mobile/**"
+      - "tool/**"
       - ".github/workflows/build-apk.yml"
 
 permissions:
@@ -38,52 +39,23 @@ jobs:
       - name: Show Flutter version
         run: flutter --version
 
-      - name: Check mobile project
+      - name: Check project files
         run: |
           test -f mobile/pubspec.yaml
+          test -f tool/configure_android.py
           ls -la mobile
+          ls -la tool
 
       - name: Generate Android platform
         working-directory: mobile
         run: |
           flutter create . --platforms=android
-
-          python3 - <<'PY'
-          from pathlib import Path
-
-          gradle_files = [
-              Path("android/app/build.gradle.kts"),
-              Path("android/app/build.gradle"),
-          ]
-
-          changed = False
-
-          for gradle_file in gradle_files:
-              if not gradle_file.exists():
-                  continue
-
-              text = gradle_file.read_text()
-
-              text = text.replace(
-                  "compileSdk = flutter.compileSdkVersion",
-                  "compileSdk = 36",
-              )
-              text = text.replace(
-                  "compileSdkVersion flutter.compileSdkVersion",
-                  "compileSdkVersion 36",
-              )
-
-              gradle_file.write_text(text)
-              print(f"Updated {gradle_file}")
-              changed = True
-
-          if not changed:
-              raise SystemExit(
-                  "Could not find the Android app Gradle file."
-              )
-          PY
-
           test -d android
+
+      - name: Configure Android permissions and SDK
+        run: |
+          python3 tool/configure_android.py
+          cat mobile/android/app/src/main/AndroidManifest.xml
 
       - name: Clean and install dependencies
         working-directory: mobile
